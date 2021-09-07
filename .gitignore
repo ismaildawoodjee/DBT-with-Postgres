@@ -4,5 +4,7 @@ dbt_modules/
 logs/
 temp/
 
+.ipynb_checkpoints
+
 *.csv
 *.json
