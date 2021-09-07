@@ -1,0 +1,24 @@
+version: "3"
+
+services: 
+  postgres-source:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: sourcedb1
+      POSTGRES_PASSWORD: sourcedb1
+      POSTGRES_DB: sourcedb
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./source-data:/source-data
+      - ./filesystem:/filesystem
+      - ./database-setup/sourcedb.sql:/docker-entrypoint-initdb.d/sourcedb.sql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "sourcedb1"]
+      interval: 5s
+      retries: 5
+    restart: always
