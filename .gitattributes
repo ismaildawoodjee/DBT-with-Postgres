@@ -1,0 +1,9 @@
+# source-data/olist_sellers_dataset.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/product_category_name_translation.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/olist_geolocation_dataset.csv filter=lfs diff=lfs merge=lfs -text
+source-data/olist_orders_dataset.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/olist_order_payments_dataset.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/olist_order_reviews_dataset.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/olist_products_dataset.csv filter=lfs diff=lfs merge=lfs -text
+source-data/olist_customers_dataset.csv filter=lfs diff=lfs merge=lfs -text
+# source-data/olist_order_items_dataset.csv filter=lfs diff=lfs merge=lfs -text
