@@ -22,3 +22,14 @@ services:
       interval: 5s
       retries: 5
     restart: always
+
+  pyspark-notebook:
+    image: jupyter/pyspark-notebook:latest
+    environment:
+      JUPYTER_ENABLE_LAB: 'yes'
+    ports:
+      - "8889:8889"
+      - "4040-4080:4040-4080"
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks
+
