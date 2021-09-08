@@ -22,8 +22,31 @@ services:
       interval: 5s
       retries: 5
     restart: always
+  
+  postgres-dest:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: destdb1
+      POSTGRES_PASSWORD: destdb1
+      POSTGRES_DB: destdb
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./source-data:/source-data
+      - ./filesystem:/filesystem
+      - ./database-setup/destdb.sql:/docker-entrypoint-initdb.d/destdb.sql
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "destdb1"]
+      interval: 5s
+      retries: 5
+    restart: always
 
   pyspark-notebook:
+    build: .
     image: jupyter/pyspark-notebook:latest
     environment:
       JUPYTER_ENABLE_LAB: 'yes'
@@ -32,5 +55,4 @@ services:
       - "4040-4080:4040-4080"
     volumes:
       - ./notebooks:/home/jovyan/work/notebooks
-      - ./filesystem:/filesystem
-
+      - ./filesystem:/home/jovyan/filesystem

@@ -1,0 +1,2 @@
+findspark
+psycopg2-binary
