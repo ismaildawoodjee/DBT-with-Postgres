@@ -47,7 +47,6 @@ services:
 
   pyspark-notebook:
     build: .
-    image: jupyter/pyspark-notebook:latest
     environment:
       JUPYTER_ENABLE_LAB: 'yes'
     ports:
