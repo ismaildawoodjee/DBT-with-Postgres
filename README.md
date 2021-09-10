@@ -50,7 +50,7 @@ docker-compose `v1.29.2` and DBT `v0.20.2`.
         password: destdb1
         port: 5434
         dbname: destdb
-        schema: public
+        schema: stage
         threads: 4
         keepalives_idle: 0
         # search_path: [optional, override the default postgres search_path]
