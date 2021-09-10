@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: customer_profile  # use +materialized in `dbt_project.yml` file
+    description: One record per customer.
+    columns:
+      - name: customer_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: first_order_date
+        description: NULL when a customer has not yet placed an order.
+
+  - name: stage_customers
+    description: This model cleans up customer data
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+  
+  - name: stage_orders
+    description: this model cleans up order data
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: [
+                'approved',
+                'canceled',
+                'created',
+                'delivered',
+                'invoiced',
+                'processing',
+                'shipped',
+                'unavailable'
+              ]
+      - name: customer_id
+        tests:
+          - not_null
+          # - relationships:
+          #   to: ref('stage_customers')
+          #   field: customer_id
+      
+  
+  
