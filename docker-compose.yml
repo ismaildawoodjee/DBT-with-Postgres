@@ -53,5 +53,6 @@ services:
       - "8889:8889"
       - "4040-4080:4040-4080"
     volumes:
+      - ./source-data:/home/jovyan/source-data
       - ./notebooks:/home/jovyan/work/notebooks
       - ./filesystem:/home/jovyan/filesystem

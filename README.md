@@ -32,7 +32,11 @@ docker-compose `v1.29.2` and DBT `v0.20.2`.
 
         docker-compose up --build -d
 
-7. Create a  `profiles.yml` file in the `~/.dbt/` directory and add the
+7. Copy over the Postgres JDBC driver to the `jars` directory in `SPARK_HOME=/usr/local/spark`
+
+        docker cp drivers/postgresql-42.2.23.jar dbt-with-postgres_pyspark-notebook_1:/usr/local/spark/jars/
+
+8. Create a  `profiles.yml` file in the `~/.dbt/` directory and add the
    following.
 
     ```yaml
@@ -58,12 +62,6 @@ docker-compose `v1.29.2` and DBT `v0.20.2`.
 
         dbt debug
 
-8. Run the example models to confirm that setup is successful
+9. Run the example models to confirm that setup is successful
 
         dbt run
-
-## Spark Container
-
-Copy Postgres JDBC driver to the `jars` directory in `SPARK_HOME=/usr/local/spark`
-
-    docker cp drivers/postgresql-42.2.23.jar dbt-with-postgres_pyspark-notebook_1:/usr/local/spark/jars/
